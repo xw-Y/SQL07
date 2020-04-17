@@ -1,0 +1,62 @@
+信息系统与数据库技术练习7答题卡
+班级：     计算机信息管理一班
+姓名：     余晓伟
+学号：     20190307109   
+
+注：请将答案放置在序号下方。
+
+（一）
+1、/*打开Companys数据库。*/
+/*CREATE DATABASE Companys
+GO
+USE Companys
+GO
+CREATE TABLE Employee
+(Eid CHAR(4) PRIMARY KEY,
+ Ename VARCHAR(20),
+ Esex BIT,
+ EBirth Datetime,
+ BasePay MONEY,
+ Bonus MONEY,
+)
+GO
+CREATE TABLE Department
+(Did CHAR(4) PRIMARY KEY,
+ Dname VARCHAR(20),
+ Manager VARCHAR(20))*/
+USE Department
+GO
+2、/*在Employee表中插入一条记录。雇员号(Eid)为G101，雇员姓名(Ename)为张太华。注意：本题完成后可通过select * from Employee查看记录是否插入成功。*/
+INSERT Employee(Eid,Ename)
+VALUES('G101,'张太华')
+select * from Employee
+3、/*在Employee表中插入一条记录。雇员号(Eid)为SG01，雇员姓名(Ename)为许世芳，性别(Esex)为0，出生日期为(Ebirth)1996-07-08，基本工资(BasePay)为3456.78。*/
+INSERT Employee(Eid,Ename,Esex,Ebirth,BasePay)
+VALUES('SG01','许世芳',0,'1996/07/08',3456.78)
+4、/*在Employee表中同时插入如下三条记录。*/
+/*雇员号(Eid)	雇员姓名(Ename)	性别(Esex)	奖金(Bonus)	基本工资(BasePay)*/
+/*SG02	秦英俊	1	3212.45	4567.23*/
+/*SG03	刘桂兰	0	3001.76	2346.78*/
+/*SG04	伍陆齐	1	3426.23	3452.96*/
+INSERT Employee(Eid,Ename,Esex,Ebirth,BasePay)
+VALUES('SG02','秦英俊',1,3212.45,4567.23)
+            ('SG03','刘桂兰',0,3001.76,2346.78)
+            ('SG04','伍陆齐',1,3426.23,3452.96)
+5、/*删除Employee表奖金(Bonus)大于等于3426.23并且性别(Esex)为0的记录。*/
+DELETE Employee
+WHERE Bonus>=3426.23 and Esex=0
+6、/*修改Department表，增加一个area字段，类型为Decimal、精度为10、小数位数2，不能为空值。*/
+ALTER TABLE Department
+ADD Ename area Decimal(10，[2]) NOT NULL
+7、/*修改Department表， 将Dname字段的类型改为VARCHAR、长度为22。*/
+ALTER TABLE Department
+ALTER COLUMN Dname VARCHAR(22)
+8、/*修改Department表，删除Manager字段。*/
+ALTER TABLE Department
+DROP COLUMN Manager
+9、/*修改Department表，将area列重命名为areas。*/
+EXEC sp_rename 'Department.area',areas
+10、/*查看Department表的表结构。*/
+EXEC sp_help Department
+11、/*删除Department表。*/
+DROP TABLE Department
